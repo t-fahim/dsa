@@ -4,6 +4,16 @@
 import java.util.*;
 
 class Solution {
+    public void dfs(int a,boolean[] vis, int[][] adj){
+        int n = adj.length;
+        vis[a] = true;
+        for(int i = 0;i<n;i++){
+            if(!vis[i] && adj[a][i] == 1){
+                dfs(i,vis,adj);
+            }
+        }
+    }
+
     public void bfs(int a, boolean[] vis, int[][] adj){
         int n = adj.length;
         vis[a] = true;
@@ -27,7 +37,8 @@ class Solution {
     boolean[] vis = new boolean[n];
     for(int i = 0;i<n;i++){
         if(!vis[i]){
-            bfs(i,vis,isConnected);
+            //bfs(i,vis,isConnected);
+            dfs(i,vis,isConnected);
             count++;
         }
     }
